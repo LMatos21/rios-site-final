@@ -1,5 +1,10 @@
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Head from "next/head";
+
+const MotionDiv = dynamic(() =>
+  import("framer-motion").then((mod) => mod.motion.div),
+  { ssr: false }
+);
 
 export default function RiosTransportes() {
   return (
@@ -9,7 +14,7 @@ export default function RiosTransportes() {
       </Head>
       <div className="bg-white text-gray-900">
         <section className="bg-gray-900 text-white h-[50vh] flex items-center justify-center">
-          <motion.div
+          <MotionDiv
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -20,7 +25,7 @@ export default function RiosTransportes() {
             <button className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition">
               Solicite um Orçamento
             </button>
-          </motion.div>
+          </MotionDiv>
         </section>
       </div>
     </>
